@@ -2,6 +2,7 @@ package com.sixpack.dorundorun.global.response;
 
 import com.sixpack.dorundorun.global.exception.ErrorCode;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -9,7 +10,7 @@ import org.springframework.http.HttpStatus;
 import java.time.LocalDateTime;
 
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class DorunResponse<T> {
 
 	private HttpStatus status;
@@ -78,11 +79,11 @@ public class DorunResponse<T> {
 	}
 
 	// ===== 에러 응답 생성 메서드 =====
-	public static <T> DorunResponse<T> error(ErrorCode errorCode) {
+	public static DorunResponse<Void> error(ErrorCode errorCode) {
 		return new DorunResponse<>(errorCode);
 	}
 
-	public static <T> DorunResponse<T> error(ErrorCode errorCode, String formattedMessage) {
+	public static DorunResponse<Void> error(ErrorCode errorCode, String formattedMessage) {
 		return new DorunResponse<>(errorCode, formattedMessage);
 	}
 }

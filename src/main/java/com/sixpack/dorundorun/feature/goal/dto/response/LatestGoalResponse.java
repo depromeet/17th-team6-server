@@ -1,6 +1,7 @@
 package com.sixpack.dorundorun.feature.goal.dto.response;
 
 import java.time.Instant;
+import java.time.LocalDate;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
@@ -18,13 +19,13 @@ public record LatestGoalResponse(
 	@Schema(description = "목표 제목", example = "하프마라톤 완주")
 	String title,
 
-	@Schema(description = "목표 시작일 (YYYY-MM-DD)", example = "2024-01-01")
-	String startedAt,
+	@Schema(description = "목표 시작일", example = "2024-01-01", type = "string", format = "date")
+	LocalDate startedAt,
 
-	@Schema(description = "목표 종료일 (YYYY-MM-DD)", example = "2024-06-30")
-	String endedAt,
+	@Schema(description = "목표 종료일", example = "2024-06-30", type = "string", format = "date")
+	LocalDate endedAt,
 
-	@Schema(description = "목표 달성 일시 (null 가능)", example = "null")
+	@Schema(description = "목표 달성 일시", nullable = true, example = "2024-06-30T09:00:00Z")
 	Instant clearedAt,
 
 	@Schema(description = "목표 페이스 (초/km)", example = "360")
